@@ -52,7 +52,8 @@ public class RegistrationDataValidator {
     private final OriginValidator originValidator = new OriginValidator();
     private final TokenBindingValidator tokenBindingValidator = new TokenBindingValidator();
     private final RpIdHashValidator rpIdHashValidator = new RpIdHashValidator();
-    private final ExtensionValidator extensionValidator = new ExtensionValidator();
+    private final ClientExtensionValidator clientExtensionValidator = new ClientExtensionValidator();
+    private final AuthenticatorExtensionValidator authenticatorExtensionValidator = new AuthenticatorExtensionValidator();
 
     private final List<CustomRegistrationValidator> customRegistrationValidators = new ArrayList<>();
 
@@ -76,7 +77,7 @@ public class RegistrationDataValidator {
                 selfAttestationTrustworthinessValidator);
     }
 
-
+    @SuppressWarnings("deprecation")
     public void validate(RegistrationData registrationData, RegistrationParameters registrationParameters) {
 
         BeanAssertUtil.validate(registrationData);
@@ -150,7 +151,8 @@ public class RegistrationDataValidator {
         //spec| In the general case, the meaning of "are as expected" is specific to the Relying Party and which extensions are in use.
         AuthenticationExtensionsAuthenticatorOutputs<RegistrationExtensionAuthenticatorOutput> authenticationExtensionsAuthenticatorOutputs = authenticatorData.getExtensions();
         List<String> expectedExtensionIdentifiers = registrationParameters.getExpectedExtensionIds();
-        extensionValidator.validate(clientExtensions, authenticationExtensionsAuthenticatorOutputs, expectedExtensionIdentifiers);
+        clientExtensionValidator.validate(clientExtensions, expectedExtensionIdentifiers);
+        authenticatorExtensionValidator.validate(authenticationExtensionsAuthenticatorOutputs, expectedExtensionIdentifiers);
 
         //spec| Step13-16,19
         attestationValidator.validate(registrationObject);

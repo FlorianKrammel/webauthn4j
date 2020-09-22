@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 the original author or authors.
+ * Copyright 2002-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      https://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package com.webauthn4j.data.attestation.statement;
+package com.webauthn4j.data.internal;
 
+import com.webauthn4j.data.MessageDigestAlgorithm;
+import com.webauthn4j.data.SignatureAlgorithm;
+import com.webauthn4j.data.attestation.statement.COSEAlgorithmIdentifier;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,10 +27,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class SignatureAlgorithmTest {
 
-    @Test
-    void create_with_invalid_alg_test() {
-        assertThatThrownBy(() -> SignatureAlgorithm.create(new COSEAlgorithmIdentifier(-16))).isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void getJcaName_test() {
@@ -35,8 +34,8 @@ class SignatureAlgorithmTest {
     }
 
     @Test
-    void getMessageDigestJcaName_test() {
-        assertThat(SignatureAlgorithm.RS256.getMessageDigestJcaName()).isEqualTo("SHA-256");
+    void getMessageDigestAlgorithm_test() {
+        assertThat(SignatureAlgorithm.RS256.getMessageDigestAlgorithm()).isEqualTo(MessageDigestAlgorithm.SHA256);
     }
 
     @Test

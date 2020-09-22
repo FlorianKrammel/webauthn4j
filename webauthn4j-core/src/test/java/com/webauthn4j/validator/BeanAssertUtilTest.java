@@ -147,6 +147,8 @@ class BeanAssertUtilTest {
         );
     }
 
+
+
     @Test
     void validate_RegistrationParameters_test() {
         RegistrationParameters registrationParameters = new RegistrationParameters(
@@ -335,6 +337,7 @@ class BeanAssertUtilTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     void validate_AuthenticationParameters_test() {
         AuthenticationParameters authenticationParameters = new AuthenticationParameters(
@@ -354,6 +357,7 @@ class BeanAssertUtilTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     void validate_AuthenticationParameters_with_serverProperty_null_test() {
         AuthenticationParameters authenticationParameters = new AuthenticationParameters(
@@ -368,6 +372,7 @@ class BeanAssertUtilTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     void validate_AuthenticationParameters_with_authenticator_null_test() {
         AuthenticationParameters authenticationParameters = new AuthenticationParameters(
@@ -382,6 +387,7 @@ class BeanAssertUtilTest {
         );
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     void validate_AuthenticationParameters_with_expectedExtensionIds_null_test() {
         AuthenticationParameters authenticationParameters = new AuthenticationParameters(
