@@ -4,7 +4,7 @@ import com.webauthn4j.test.TestDataUtil;
 import com.webauthn4j.validator.RegistrationObject;
 import org.junit.jupiter.api.Test;
 
-public class AppleAppAttestStatementValidatorTest {
+class AppleAppAttestStatementValidatorTest {
 
     private final AppleAppAttestStatementValidator target = new AppleAppAttestStatementValidator();
 
